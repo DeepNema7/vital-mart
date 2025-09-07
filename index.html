@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital Mart Healthcare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header Component -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo" onclick="showPage('home')">
+                    <i class="fas fa-heartbeat"></i>
+                    Vital Mart
+                </div>
+                <ul class="nav-links">
+                    <li><a onclick="showPage('home')"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a onclick="showPage('products')"><i class="fas fa-pills"></i> Products</a></li>
+                    <li><a onclick="showPage('tracking')"><i class="fas fa-truck"></i> Track Order</a></li>
+                    <li><a onclick="showPage('profile')"><i class="fas fa-user"></i> Account</a></li>
+                    <li class="cart-icon">
+                        <a onclick="showPage('cart')"><i class="fas fa-shopping-cart"></i> Cart <span class="cart-count">0</span></a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="home-page" class="page active">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <h1>Your Health is Our Priority</h1>
+                    <p>Discover a wide range of healthcare products, medicines, and equipment with fast delivery and professional support.</p>
+                    <button class="btn btn-primary" onclick="showPage('products')">Shop Now</button>
+                </section>
+
+                <!-- Featured Products -->
+                <h2 class="section-title">Featured Products</h2>
+                <div class="products-grid">
+                    <!-- Products will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Products Page -->
+            <div id="products-page" class="page">
+                <h2 class="section-title">Our Products</h2>
+                
+                <!-- Search Bar -->
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search for products..." oninput="filterProducts(this.value)">
+                    <button class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="products-grid" id="all-products">
+                    <!-- All products will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Product Detail Page -->
+            <div id="product-detail-page" class="page">
+                <!-- Product details will be dynamically inserted here -->
+            </div>
+
+            <!-- Cart Page -->
+            <div id="cart-page" class="page">
+                <h2 class="section-title">Your Shopping Cart</h2>
+                <div class="cart-container">
+                    <div id="cart-items">
+                        <!-- Cart items will be dynamically inserted here -->
+                        <div class="empty-cart-message">
+                            <h3>Your cart is empty</h3>
+                            <p>Add some products to your cart to see them here</p>
+                            <button class="btn btn-primary" onclick="showPage('products')">Continue Shopping</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tracking Page -->
+            <div id="tracking-page" class="page">
+                <h2 class="section-title">Track Your Order</h2>
+                <div class="tracking-container">
+                    <div class="tracking-progress">
+                        <div class="progress-step step-active">
+                            <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+                            <div>Order Placed</div>
+                        </div>
+                        <div class="progress-step step-active">
+                            <div class="step-icon"><i class="fas fa-cog"></i></div>
+                            <div>Processing</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-icon"><i class="fas fa-truck"></i></div>
+                            <div>Shipped</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                            <div>Delivered</div>
+                        </div>
+                    </div>
+                    <p>Your order #VM20240315 is currently being processed. Expected delivery: March 18, 2024</p>
+                    <div id="live-map" style="height: 300px; background: #eee; border-radius: 8px; display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+                        <p>Live tracking map would be displayed here</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profile-page" class="page">
+                <h2 class="section-title">Your Account</h2>
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="user-name">Guest User</h2>
+                            <p id="user-email">guest@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="login-container" id="login-form">
+                        <h2>Login to Your Account</h2>
+                        <form onsubmit="loginUser(event)">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="Enter your password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                        </form>
+                        <p style="text-align: center; margin-top: 20px;">
+                            Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a>
+                        </p>
+                    </div>
+                    
+                    <div class="profile-details" id="user-details" style="display: none;">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" id="profile-name" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="profile-email" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="profile-phone" value="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label>Delivery Address</label>
+                            <textarea id="profile-address" rows="3">123 Main St, Anytown, CA 12345</textarea>
+                        </div>
+                        <button class="btn btn-primary">Save Changes</button>
+                        <button class="btn" style="margin-left: 10px; background: #eee;" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer Component -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Vital Mart</h3>
+                    <p>Your trusted healthcare partner providing quality medical products and supplies with fast delivery.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="showPage('home')">Home</a></li>
+                        <li><a onclick="showPage('products')">Products</a></li>
+                        <li><a onclick="showPage('tracking')">Track Order</a></li>
+                        <li><a onclick="showPage('profile')">My Account</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (800) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@vitalmart.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health St, Medical District</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vital Mart Healthcare. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <!-- Notification -->
+        <div class="notification" id="notification">
+            Product added to cart!
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="components.js"></script>
+    <script src="app.js"></script>
+    <!-- <script src="new.html"></script> -->
+</body>
+</html>
