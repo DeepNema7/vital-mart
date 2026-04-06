@@ -50,11 +50,38 @@ It includes:
 
 ## 🛠️ Tech Stack
 
-| Frontend | Deployment |
-|----------|-----------|
-| HTML     | Netlify   |
-| CSS      |           |
-| JavaScript |         |
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="200">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="50"/><br>
+<b>HTML</b><br>
+<sub>Structure</sub>
+</td>
+
+<td align="center" width="200">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="50"/><br>
+<b>CSS</b><br>
+<sub>Styling</sub>
+</td>
+
+<td align="center" width="200">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="50"/><br>
+<b>JavaScript</b><br>
+<sub>Logic</sub>
+</td>
+
+<td align="center" width="200">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" width="50"/><br>
+<b>Netlify</b><br>
+<sub>Deployment</sub>
+</td>
+</tr>
+</table>
+
+</div>
 
 ---
 
